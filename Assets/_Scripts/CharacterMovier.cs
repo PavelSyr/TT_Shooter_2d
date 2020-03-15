@@ -15,6 +15,7 @@ namespace TT_Shooter_2d
 
         #region Private Fields
         private IInput m_Input;
+        private Rigidbody2D m_Ridgidbody;
         #endregion
 
         #region Public Method
@@ -44,13 +45,26 @@ namespace TT_Shooter_2d
             {
                 throw new ArgumentNullException(nameof(m_Input));
             }
+
+            m_Ridgidbody = GetComponent<Rigidbody2D>();
+            if (m_Ridgidbody == null)
+            {
+                throw new ArgumentNullException(nameof(m_Ridgidbody));
+            }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            transform.position += m_Input.Vertical * transform.forward * m_Speed * Time.deltaTime;
-            transform.Rotate(Vector3.up * m_Input.Horizontal * m_TrunSpeed * Time.deltaTime);
+            m_Ridgidbody.velocity = m_Input.Direction * m_Speed;
         }
+
+        //private void Update()
+        //{
+        //    transform.position += new Vector3(
+        //        x: m_Input.Horizontal,
+        //        y: m_Input.Vertical,
+        //        z: 0) * m_Speed * Time.deltaTime;
+        //}
         #endregion
     }
 }

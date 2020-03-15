@@ -20,6 +20,7 @@ namespace TT_Shooter_2d.Inputs
         #region Properties
         public float Horizontal { get; private set; }
         public float Vertical { get; private set; }
+        public Vector2 Direction => new Vector2(Horizontal, Vertical).normalized;
         #endregion
 
         #region Events
@@ -61,7 +62,6 @@ namespace TT_Shooter_2d.Inputs
             Vertical = 0.0f;
             Horizontal = 0.0f;
 
-
             //calculate new
             var distance = Vector3.Distance(m_Target.position, transform.position);
 
@@ -73,12 +73,10 @@ namespace TT_Shooter_2d.Inputs
             {
                 if (distance <= m_DistanceToGo)
                 {
-                    Vertical = Mathf.Clamp01(m_DistanceToGo / distance);
+                    var toTargetDirection = (m_Target.position - transform.position).normalized;
+                    Horizontal = toTargetDirection.x;
+                    Vertical = toTargetDirection.y;
                 }
-
-                var toTargetDirection = (m_Target.position - transform.position);
-                var cross = Vector3.Cross(transform.forward, toTargetDirection);
-                Horizontal = Mathf.Sign(cross.y);
             }
         }
         #endregion

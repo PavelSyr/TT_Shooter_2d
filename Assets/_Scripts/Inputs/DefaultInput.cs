@@ -13,6 +13,7 @@ namespace TT_Shooter_2d.Inputs
         #region Properties
         public float Horizontal { get; private set; }
         public float Vertical { get; private set; }
+        public Vector2 Direction => new Vector2(Horizontal, Vertical).normalized;
         #endregion
 
         #region Events
