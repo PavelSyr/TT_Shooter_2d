@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TT_Shooter_2d.Inputs;
 using TT_Shooter_2d.Settings;
 using UnityEngine;
 
 namespace TT_Shooter_2d
 {
-    public class ProjectileLauncher : MonoBehaviour, ISetupable<IPlayerSettings>
+    public class ProjectileLauncher : MonoBehaviour, ISetupable<IAttackSpeedSettings>
     {
         #region Private Fields
 #pragma warning disable 0649
@@ -20,11 +18,11 @@ namespace TT_Shooter_2d
         [SerializeField]
         private Transform m_Container;
 
-        private IInput m_Input;
-#pragma warning restore 0649
-
         [SerializeField]
         private float m_AttackSpeed;
+#pragma warning restore 0649
+
+        private IInput m_Input;
 
         private float m_Time = 0.0f;
 
@@ -36,14 +34,14 @@ namespace TT_Shooter_2d
         #endregion
 
         #region Implementation of ISetupable
-        public void Setup(IPlayerSettings settings)
+        public void Setup(IAttackSpeedSettings settings)
         {
             m_AttackSpeed = settings.AttackSpeed;
         }
 
         public void Setup(object settings)
         {
-            var playerSettings = settings as IPlayerSettings;
+            var playerSettings = settings as IAttackSpeedSettings;
 
             if (playerSettings != null)
             {

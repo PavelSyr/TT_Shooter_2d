@@ -51,7 +51,7 @@ namespace TT_Shooter_2d.Settings
         public float TurnSpeed = 50.0f;
         public float AttackSpeed = 1f;
 
-        float IPlayerSettings.AttackSpeed => AttackSpeed;
+        float IAttackSpeedSettings.AttackSpeed => AttackSpeed;
         float IMoveable.Speed => Speed;
         float IMoveable.TurnSpeed => TurnSpeed;
     }
@@ -68,7 +68,7 @@ namespace TT_Shooter_2d.Settings
         public float DistanceToGo = 2.0f;
 
         float IEnemySettings.EnemyCount => EnemyCount;
-        float IEnemySettings.AttackSpeed => AttackSpeed;
+        float IAttackSpeedSettings.AttackSpeed => AttackSpeed;
         float IEnemySettings.AttackDistance => AttackDistance;
         float IEnemySettings.DistanceToGo => DistanceToGo;
         float IMoveable.Speed => Speed;

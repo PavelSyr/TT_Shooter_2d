@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TT_Shooter_2d.Enemies;
 using TT_Shooter_2d.Settings;
+using TT_Shooter_2d.UI;
 using UnityEngine;
 
 namespace TT_Shooter_2d
@@ -20,13 +21,28 @@ namespace TT_Shooter_2d
         private Transform m_EnemyContainer;
 
         [SerializeField]
-        private GameObject m_Respawn;
+        private GameObject m_RespawnPoint;
+
+        [SerializeField]
+        private GameViews m_GameViews;
+#pragma warning restore 0649
 
         private GameHandler m_Game;
-#pragma warning restore 0649
+        private IRespawn m_Respawn;
 
         #region Unity Callbacks
         private void Awake()
+        {
+            Check();
+
+            Init();
+
+            StartCoroutine(EnemySetup());
+        }
+        #endregion
+
+        #region Private Methods
+        private void Check()
         {
             if (m_GameSettings == null)
             {
@@ -43,32 +59,38 @@ namespace TT_Shooter_2d
                 throw new ArgumentNullException(nameof(m_EnemyContainer));
             }
 
+            if (m_RespawnPoint == null)
+            {
+                throw new ArgumentNullException(nameof(m_RespawnPoint));
+            }
+
+            if (m_GameViews == null)
+            {
+                throw new ArgumentNullException(nameof(m_GameViews));
+            }
+
+            m_Respawn = m_RespawnPoint.GetComponent<IRespawn>();
             if (m_Respawn == null)
             {
                 throw new ArgumentNullException(nameof(m_Respawn));
             }
 
-            var respawn = m_Respawn.GetComponent<IRespawn>();
-
-            if (respawn == null)
-            {
-                throw new ArgumentNullException(nameof(respawn));
-            }
-
             m_GameSettings.Check();
+        }
 
+        private void Init()
+        {
             var playerComponentsToSetup = m_Player.GetComponents<ISetupable>();
-            foreach(var component in playerComponentsToSetup)
+            foreach (var component in playerComponentsToSetup)
             {
                 component.Setup(m_GameSettings.PlayerSettings);
-                component.Setup(respawn);
+                component.Setup(m_Respawn);
             }
 
             m_Game = new GameHandler(m_Player, m_EnemyContainer);
 
-            StartCoroutine(EnemySetup());
+            m_GameViews.Setup(m_Game);
         }
-        #endregion
 
         private IEnumerator EnemySetup()
         {
@@ -86,5 +108,6 @@ namespace TT_Shooter_2d
             }
             m_Game.Go();
         }
+        #endregion
     }
 }

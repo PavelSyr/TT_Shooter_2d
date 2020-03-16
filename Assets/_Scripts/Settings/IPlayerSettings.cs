@@ -1,7 +1,6 @@
 ﻿namespace TT_Shooter_2d.Settings
 {
-    public interface IPlayerSettings : IMoveable
+    public interface IPlayerSettings : IMoveable, IAttackSpeedSettings
     {
-        float AttackSpeed { get; }
     }
 }

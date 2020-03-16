@@ -9,7 +9,7 @@ namespace TT_Shooter_2d
     public delegate void WinHandler();
     public delegate void LoseHanler();
 
-    class GameHandler
+    public class GameHandler
     {
         #region Events
         public event WinHandler OnWin;
@@ -22,6 +22,12 @@ namespace TT_Shooter_2d
         private IDamageable m_Player;
         private List<IDamageable> m_Enemies;
         private Transform m_EnemyContainer;
+        private DateTime m_StartTime;
+        #endregion
+
+        #region Properties
+        public TimeSpan PlayTime { get; private set; }
+        public int Count { get; private set; }
         #endregion
 
         public GameHandler(GameObject player, Transform enemyContainer)
@@ -68,6 +74,10 @@ namespace TT_Shooter_2d
 
         public void Go()
         {
+            //TODO Replace DateTime.Now to TimeProvider.Now
+            m_StartTime = DateTime.Now;
+            Count = 0;
+
             OnGo?.Invoke();
             m_EnemyContainer.gameObject.SetActive(true);
         }
@@ -77,10 +87,14 @@ namespace TT_Shooter_2d
         private void Damagable_OnDie(IDamageable instance)
         {
             m_Enemies.Remove(instance);
+            Count++;
 
             instance.OnDie -= Damagable_OnDie;
             if (m_Enemies.Count == 0)
             {
+                //TODO Replace DateTime.Now to TimeProvider.Now
+                PlayTime = DateTime.Now - m_StartTime;
+
                 OnWin?.Invoke();
             }
         }
