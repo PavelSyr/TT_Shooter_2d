@@ -44,7 +44,7 @@ namespace TT_Shooter_2d.Enemies
         }
 
         #region Implemetation of IEnemyFactory
-        public void Instatinate()
+        public GameObject Instatinate()
         {
             Vector3 origin = m_Player.position + UnityEngine.Random.insideUnitSphere * (RADIUS + m_Settings.DistanceToGo);
             origin.z = 0;
@@ -57,6 +57,8 @@ namespace TT_Shooter_2d.Enemies
                 component.Setup(m_Settings);
                 component.Setup(m_Player);
             }
+
+            return enemy;
         }
         #endregion
     }

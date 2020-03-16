@@ -18,6 +18,11 @@ namespace TT_Shooter_2d
 
         [SerializeField]
         private Transform m_EnemyContainer;
+
+        [SerializeField]
+        private GameObject m_Respawn;
+
+        private GameHandler m_Game;
 #pragma warning restore 0649
 
         #region Unity Callbacks
@@ -38,22 +43,48 @@ namespace TT_Shooter_2d
                 throw new ArgumentNullException(nameof(m_EnemyContainer));
             }
 
+            if (m_Respawn == null)
+            {
+                throw new ArgumentNullException(nameof(m_Respawn));
+            }
+
+            var respawn = m_Respawn.GetComponent<IRespawn>();
+
+            if (respawn == null)
+            {
+                throw new ArgumentNullException(nameof(respawn));
+            }
+
             m_GameSettings.Check();
 
             var playerComponentsToSetup = m_Player.GetComponents<ISetupable>();
             foreach(var component in playerComponentsToSetup)
             {
                 component.Setup(m_GameSettings.PlayerSettings);
+                component.Setup(respawn);
             }
+
+            m_Game = new GameHandler(m_Player, m_EnemyContainer);
+
+            StartCoroutine(EnemySetup());
+        }
+        #endregion
+
+        private IEnumerator EnemySetup()
+        {
+            m_Game.Wait();
+            yield return new WaitForSeconds(m_GameSettings.PauseBeforeEnemyCreation);
 
             var enemySettings = m_GameSettings.EnemySettings;
 
             var enemyFactory = new EnemyFactory(m_EnemyContainer, m_GameSettings.EnemyPrefab, enemySettings, m_Player.transform);
             for (int i = 0; i < enemySettings.EnemyCount; i++)
             {
-                enemyFactory.Instatinate();
+                var enemy = enemyFactory.Instatinate();
+                m_Game.AddEnemy(enemy);
+                yield return null;
             }
+            m_Game.Go();
         }
-        #endregion
     }
 }

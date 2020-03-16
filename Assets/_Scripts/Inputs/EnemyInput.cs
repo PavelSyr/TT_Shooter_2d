@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TT_Shooter_2d.Inputs
 {
-    public class EnemyInput : MonoBehaviour, IInput, ISetupable
+    public class EnemyInput : MonoBehaviour, IInput, ISetupable<Transform>, ISetupable<IEnemySettings>
     {
         #region Private Fields
         [SerializeField]

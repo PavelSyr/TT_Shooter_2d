@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TT_Shooter_2d
 {
-    public class ProjectileLauncher : MonoBehaviour, ISetupable
+    public class ProjectileLauncher : MonoBehaviour, ISetupable<IPlayerSettings>
     {
         #region Private Fields
 #pragma warning disable 0649
@@ -35,15 +35,19 @@ namespace TT_Shooter_2d
         private float Delay => 1.0f / m_AttackSpeed;
         #endregion
 
-
         #region Implementation of ISetupable
+        public void Setup(IPlayerSettings settings)
+        {
+            m_AttackSpeed = settings.AttackSpeed;
+        }
+
         public void Setup(object settings)
         {
             var playerSettings = settings as IPlayerSettings;
 
             if (playerSettings != null)
             {
-                m_AttackSpeed = playerSettings.AttackSpeed;
+                Setup(playerSettings);
             }
         }
         #endregion

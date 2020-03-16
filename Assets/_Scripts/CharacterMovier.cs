@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TT_Shooter_2d
 {
-    public class CharacterMovier : MonoBehaviour, ISetupable
+    public class CharacterMovier : MonoBehaviour, ISetupable<IMoveable>
     {
         [SerializeField]
         private float m_Speed = 5.0f;
@@ -18,7 +18,7 @@ namespace TT_Shooter_2d
         private Rigidbody2D m_Ridgidbody;
         #endregion
 
-        #region Public Method
+        #region Implementation of ISetupable
         public void Setup(IMoveable playerSettings)
         {
             m_Speed = playerSettings.Speed;

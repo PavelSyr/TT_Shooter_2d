@@ -22,6 +22,9 @@ namespace TT_Shooter_2d.Settings
         [SerializeField]
         private GameObject m_EnemyPrefab;
 
+        [Space]
+        [Tooltip("Pause before enemy creation")]
+        private float m_PauseBeforeEnemyCreation = 1.0f;
 #pragma warning restore 0649
         #endregion
 
@@ -29,6 +32,7 @@ namespace TT_Shooter_2d.Settings
         public GameObject EnemyPrefab => m_EnemyPrefab;
         public IPlayerSettings PlayerSettings => m_PlayerSettings;
         public IEnemySettings EnemySettings => m_EnemySettings;
+        public float PauseBeforeEnemyCreation => m_PauseBeforeEnemyCreation;
         #endregion
 
         public void Check()
