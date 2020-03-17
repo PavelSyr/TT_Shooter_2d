@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TT_Shooter_2d.CrossCutting.Time;
 using UnityEngine;
 
 namespace TT_Shooter_2d
@@ -74,8 +75,7 @@ namespace TT_Shooter_2d
 
         public void Go()
         {
-            //TODO Replace DateTime.Now to TimeProvider.Now
-            m_StartTime = DateTime.Now;
+            m_StartTime = TimeProvider.Current.Now;
             Count = 0;
 
             OnGo?.Invoke();
@@ -92,8 +92,7 @@ namespace TT_Shooter_2d
             instance.OnDie -= Damagable_OnDie;
             if (m_Enemies.Count == 0)
             {
-                //TODO Replace DateTime.Now to TimeProvider.Now
-                PlayTime = DateTime.Now - m_StartTime;
+                PlayTime = TimeProvider.Current.Now - m_StartTime;
 
                 OnWin?.Invoke();
             }
