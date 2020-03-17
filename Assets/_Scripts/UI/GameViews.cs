@@ -94,7 +94,7 @@ namespace TT_Shooter_2d.UI
 
         private void Game_OnLose()
         {
-            m_Win.SetActive(true);
+            m_Lose.SetActive(true);
         }
 
         private void Game_OnGo()

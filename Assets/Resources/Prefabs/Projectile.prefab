@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5972319463577607226}
-  - component: {fileID: -4167778898964532211}
   - component: {fileID: 844666487966689290}
   - component: {fileID: 1793152111}
+  - component: {fileID: 5844546783918591966}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -34,21 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4167778898964532211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839455202688232399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a04093a447a8a42a155a5fc3930320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damage: 10
-  m_Speed: 10
-  m_LifeTime: 3
 --- !u!61 &844666487966689290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96,6 +81,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5844546783918591966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839455202688232399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e82baa4632b9d44a8dd414ff8a30d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damage: 10
+  m_Speed: 10
+  m_LifeTime: 3
+  m_TargetTag: 
 --- !u!1 &8569932153794807138
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -900848611
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -6672146280704311497, guid: bf6b4e5beb36d5b4a9791576229b0d6a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

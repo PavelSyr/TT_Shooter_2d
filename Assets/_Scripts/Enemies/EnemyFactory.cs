@@ -6,16 +6,15 @@ namespace TT_Shooter_2d.Enemies
 {
     class EnemyFactory : IEnemyFactory
     {
-        private const float RADIUS = 5.0f;
-
         #region Private Fields
         private Transform m_Container;
         private GameObject m_Prefab;
         private Transform m_Player;
         private IEnemySettings m_Settings;
+        private float m_Radius;
         #endregion
 
-        public EnemyFactory(Transform container, GameObject prefab, IEnemySettings settings, Transform player)
+        public EnemyFactory(Transform container, GameObject prefab, Transform player, GameSettings settings)
         {
             if (container == null)
             {
@@ -40,13 +39,14 @@ namespace TT_Shooter_2d.Enemies
             m_Container = container;
             m_Prefab = prefab;
             m_Player = player;
-            m_Settings = settings;
+            m_Settings = settings.EnemySettings;
+            m_Radius = settings.EnemyStartRadius;
         }
 
         #region Implemetation of IEnemyFactory
         public GameObject Instatinate()
         {
-            Vector3 origin = m_Player.position + UnityEngine.Random.insideUnitSphere * (RADIUS + m_Settings.DistanceToGo);
+            Vector3 origin = m_Player.position + UnityEngine.Random.insideUnitSphere * ( m_Radius + m_Settings.DistanceToGo );
             origin.z = 0;
 
             var enemy = GameObject.Instantiate(m_Prefab, origin, Quaternion.identity, m_Container);

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 114186723}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,13 +151,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 114186716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0993f4000419aa0408742f4522d0437c, type: 3}
+  m_Script: {fileID: 11500000, guid: c151612cdbea1564abb01da23da5ba0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Prefab: {fileID: 839455202688232399, guid: 218101924fe6c3e4eb6d7f42726f622a, type: 3}
   m_SpawnPoint: {fileID: 563790793}
   m_Container: {fileID: 1802197439}
   m_AttackSpeed: 0
+  m_TargetTag: 0
 --- !u!4 &114186718
 Transform:
   m_ObjectHideFlags: 0

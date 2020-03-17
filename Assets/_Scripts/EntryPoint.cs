@@ -97,10 +97,9 @@ namespace TT_Shooter_2d
             m_Game.Wait();
             yield return new WaitForSeconds(m_GameSettings.PauseBeforeEnemyCreation);
 
-            var enemySettings = m_GameSettings.EnemySettings;
-
-            var enemyFactory = new EnemyFactory(m_EnemyContainer, m_GameSettings.EnemyPrefab, enemySettings, m_Player.transform);
-            for (int i = 0; i < enemySettings.EnemyCount; i++)
+            var enemyCount = m_GameSettings.EnemySettings.EnemyCount;
+            var enemyFactory = new EnemyFactory(m_EnemyContainer, m_GameSettings.EnemyPrefab, m_Player.transform, m_GameSettings);
+            for (int i = 0; i < enemyCount; i++)
             {
                 var enemy = enemyFactory.Instatinate();
                 m_Game.AddEnemy(enemy);

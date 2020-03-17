@@ -21,8 +21,6 @@ namespace TT_Shooter_2d
             if (m_LifeCount <= 0)
             {
                 OnDie?.Invoke(this);
-
-                Destroy(gameObject);
             }
         }
 

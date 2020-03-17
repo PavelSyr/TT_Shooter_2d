@@ -3,7 +3,7 @@ using TT_Shooter_2d.Inputs;
 using TT_Shooter_2d.Settings;
 using UnityEngine;
 
-namespace TT_Shooter_2d
+namespace TT_Shooter_2d.Weapons
 {
     public class ProjectileLauncher : MonoBehaviour, ISetupable<IAttackSpeedSettings>
     {
@@ -20,6 +20,9 @@ namespace TT_Shooter_2d
 
         [SerializeField]
         private float m_AttackSpeed;
+
+        [SerializeField]
+        private WeaponTargets m_TargetTag;
 #pragma warning restore 0649
 
         private IInput m_Input;
@@ -96,6 +99,7 @@ namespace TT_Shooter_2d
                     dir = Vector3.up;
                 }
                 projectile.SetDirection(dir);
+                projectile.SetTargetTag(m_TargetTag.ToString());
             }
         }
     }

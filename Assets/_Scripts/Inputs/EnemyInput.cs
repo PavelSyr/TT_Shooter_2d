@@ -1,5 +1,4 @@
-﻿using System;
-using TT_Shooter_2d.Settings;
+﻿using TT_Shooter_2d.Settings;
 using UnityEngine;
 
 namespace TT_Shooter_2d.Inputs
@@ -58,11 +57,6 @@ namespace TT_Shooter_2d.Inputs
         #region Unity Callbacks
         private void Update()
         {
-            //clean input;
-            Vertical = 0.0f;
-            Horizontal = 0.0f;
-
-            //calculate new
             var distance = Vector3.Distance(m_Target.position, transform.position);
 
             if (distance <= m_AttakDistance)
@@ -71,6 +65,11 @@ namespace TT_Shooter_2d.Inputs
             }
             else
             {
+                //clean input;
+                Vertical = 0.0f;
+                Horizontal = 0.0f;
+
+                //calculate new
                 if (distance <= m_DistanceToGo)
                 {
                     var toTargetDirection = (m_Target.position - transform.position).normalized;

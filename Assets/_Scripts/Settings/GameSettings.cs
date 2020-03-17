@@ -25,6 +25,11 @@ namespace TT_Shooter_2d.Settings
         [Space]
         [Tooltip("Pause before enemy creation")]
         private float m_PauseBeforeEnemyCreation = 1.0f;
+
+        [Space]
+        [Tooltip("Enemy start radius")]
+        private float m_EnemyStartRadius = 10.0f;
+
 #pragma warning restore 0649
         #endregion
 
@@ -33,6 +38,7 @@ namespace TT_Shooter_2d.Settings
         public IPlayerSettings PlayerSettings => m_PlayerSettings;
         public IEnemySettings EnemySettings => m_EnemySettings;
         public float PauseBeforeEnemyCreation => m_PauseBeforeEnemyCreation;
+        public float EnemyStartRadius => m_EnemyStartRadius;
         #endregion
 
         public void Check()

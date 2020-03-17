@@ -101,6 +101,8 @@ namespace TT_Shooter_2d
 
         private void Player_OnDie(IDamageable instance)
         {
+            m_EnemyContainer.gameObject.SetActive(false);
+
             instance.OnDie -= Player_OnDie;
 
             OnLose?.Invoke();

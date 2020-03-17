@@ -21,7 +21,7 @@ MonoBehaviour:
     TurnSpeed: 50
     AttackSpeed: 1
     EnemyCount: 8
-    AttackDistance: 1
+    AttackDistance: 1.5
     DistanceToGo: 10
   m_EnemyPrefab: {fileID: 8681276346632106304, guid: 62d2c796daf179743b851b9917d79560,
     type: 3}
