@@ -28,6 +28,7 @@ namespace TT_Shooter_2d.Settings
 
         [Space]
         [Tooltip("Enemy start radius")]
+        [SerializeField]
         private float m_EnemyStartRadius = 10.0f;
 
 #pragma warning restore 0649

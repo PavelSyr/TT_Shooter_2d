@@ -25,3 +25,4 @@ MonoBehaviour:
     DistanceToGo: 10
   m_EnemyPrefab: {fileID: 8681276346632106304, guid: 62d2c796daf179743b851b9917d79560,
     type: 3}
+  m_EnemyStartRadius: 20
